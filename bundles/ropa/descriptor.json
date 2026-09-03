@@ -1,0 +1,10 @@
+{
+  "bundle_name": "ropa",
+  "version": "0.1.0",
+  "maintainer": "force2aipowered-svg",
+  "description": "Bundle OKF para catálogo de prendas (instrucciones).",
+  "schema": "spec/json-schemas/ropa.schema.json",
+  "records_file": "bundles/ropa/data/records.jsonl",
+  "license": "MIT",
+  "contact": "force2aipowered-svg@users.noreply.github.com"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bundle Ropa - JSON Schema (instrucciones)",
+  "description": "Esquema para registros del bundle 'ropa'. Expresa tipos y campos esperados (documento de especificación, no código ejecutable).",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Identificador único (UUID recomendado)" },
+    "nombre": { "type": "string", "description": "Nombre amigable de la prenda" },
+    "categoria": { "type": "string", "description": "Categoria general (camisa, pantalon, vestido, chaqueta)" },
+    "talla": { "type": "string", "description": "Talla o indicación de tamaño" },
+    "color": { "type": "string", "description": "Color principal detectado o informado" },
+    "marca": { "type": "string", "description": "Marca o etiqueta si es detectable" },
+    "material": { "type": "string", "description": "Material predominante" },
+    "condicion": { "type": "string", "enum": ["nuevo", "usado", "defectuoso"], "description": "Condición de la prenda" },
+    "fotos": { "type": "array", "items": { "type": "string", "format": "uri" }, "description": "Lista de URLs a las imágenes (al menos 1 al añadir)" },
+    "fecha_creacion": { "type": "string", "format": "date-time" },
+    "fecha_actualizacion": { "type": "string", "format": "date-time" },
+    "atributos_libres": { "type": "object", "description": "Objeto con metadatos adicionales no normalizados" },
+    "fuente_de_dato": { "type": "string", "description": "Origen: 'usuario', 'clasificador_automatico', 'revision_humana'" },
+    "estado": { "type": "string", "enum": ["activo", "pendiente-de-revision", "incompleto", "eliminado"], "description": "Estado operativo del registro" }
+  },
+  "required": ["id", "categoria", "fotos"],
+  "additionalProperties": true
+}

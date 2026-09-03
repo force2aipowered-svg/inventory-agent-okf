@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bundle Juego de Mesa - JSON Schema (instrucciones)",
+  "description": "Esquema para registros del bundle 'juego-de-mesa'. Documento de especificación.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Identificador único (UUID recomendado)" },
+    "nombre": { "type": "string", "description": "Nombre del juego de mesa" },
+    "jugadores_min": { "type": "integer", "minimum": 1 },
+    "jugadores_max": { "type": "integer", "minimum": 1 },
+    "duracion_minutos": { "type": "integer", "minimum": 0 },
+    "componentes": { "type": "array", "items": { "type": "string" }, "description": "Lista de componentes (tablero, cartas, fichas, etc.)" },
+    "editorial": { "type": "string" },
+    "condicion": { "type": "string", "enum": ["nuevo", "usado", "incompleto", "defectuoso"] },
+    "fotos": { "type": "array", "items": { "type": "string", "format": "uri" }, "description": "URLs a imágenes (al menos 1 al añadir)" },
+    "notas": { "type": "string" },
+    "atributos_libres": { "type": "object" },
+    "estado": { "type": "string", "enum": ["activo", "pendiente-de-identificacion", "incompleto", "eliminado"] }
+  },
+  "required": ["id", "fotos"],
+  "additionalProperties": true
+}

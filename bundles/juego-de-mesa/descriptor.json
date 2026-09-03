@@ -1,0 +1,10 @@
+{
+  "bundle_name": "juego-de-mesa",
+  "version": "0.1.0",
+  "maintainer": "force2aipowered-svg",
+  "description": "Bundle OKF para catálogo de juegos de mesa (instrucciones).",
+  "schema": "spec/json-schemas/juego-de-mesa.schema.json",
+  "records_file": "bundles/juego-de-mesa/data/records.jsonl",
+  "license": "MIT",
+  "contact": "force2aipowered-svg@users.noreply.github.com"
+}

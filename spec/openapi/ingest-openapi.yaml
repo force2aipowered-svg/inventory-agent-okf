@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: Inventory Agent - Especificación de ingestión por foto (instrucciones)
+  version: "0.1.0"
+  description: |-
+    Especificación OpenAPI (documental) para el endpoint de ingestión de fotos al agente de inventario.
+    NOTA: Este archivo es una especificación y no contiene código ejecutable.
+servers:
+  - url: https://api.example.com/
+paths:
+  /ingest-photo:
+    post:
+      summary: Recibir una foto con acción (añadir/revisar/eliminar/modificar)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: "Una de: 'añadir', 'revisar', 'eliminar', 'modificar'"
+                photo_url:
+                  type: string
+                  format: uri
+                photo_base64:
+                  type: string
+                  description: "Alternativa a photo_url; codificada en base64"
+                object_type:
+                  type: string
+                  description: "Opcional: 'ropa' | 'juego-de-mesa' | 'otro'"
+                object_id:
+                  type: string
+                  description: "Requerido para revisar/modificar/eliminar"
+                metadata:
+                  type: object
+                  description: "Metadatos arbitrarios según el bundle"
+                user_id:
+                  type: string
+                timestamp:
+                  type: string
+                  format: date-time
+                source_device_id:
+                  type: string
+              required:
+                - action
+                - user_id
+      responses:
+        '200':
+          description: Respuesta estándar exitosa (instrucciones)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok, error]
+                  action:
+                    type: string
+                  object_type:
+                    type: string
+                  object_id:
+                    type: string
+                  message:
+                    type: string
+                  missing_fields:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          description: Petición inválida (ej. falta acción o imagen)
+        '403':
+          description: Acceso denegado (ej. modificar/eliminar sin permisos)
+        '500':
+          description: Error interno
+components: {}
